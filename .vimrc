@@ -27,7 +27,10 @@ syntax on
 " Add numbers to the file.
 set number
 
-" Highlight cursor line underneath the cursor horizontally.
+" Add relative number to see how many lines above and below you have
+set relativenumber
+
+"Highlight cursor line underneath the cursor horizontally.
 set cursorline
 
 
