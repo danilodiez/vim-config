@@ -59,6 +59,9 @@ set ignorecase
 " This will allow you to search specifically for capital letters.
 set smartcase
 
+" This will add indents when convenient
+set smartindent
+
 " Show partial command you type in the last line of the screen.
 set showcmd
 
@@ -92,6 +95,27 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'preservim/nerdtree'
 
+  Plug 'jelera/vim-javascript-syntax'
+
+  Plug 'pangloss/vim-javascript'
+
+  Plug 'nvim-telescope/telescope.nvim'
+
+  Plug 'nvim-lua/plenary.nvim'
+
+  Plug 'nvim-lua/popup.nvim'
+
+  Plug 'sheerun/vim-polyglot'
+
+  Plug 'itchyny/lightline.vim'
+  Plug 'maximbaz/lightline-ale'
+  
+  Plug 'jiangmiao/auto-pairs'
+  
+  Plug 'damage220/vim-finder'
+
+  " git plugins
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " }}}
@@ -115,3 +139,7 @@ set statusline+=%=
 set laststatus=2
 
 " }}}
+
+" MAPS =----------------------------------------------------------------
+let mapleader = " "
+nnoremap <Leader>nt :NERDTreeFind <CR>
