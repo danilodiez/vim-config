@@ -146,4 +146,4 @@ set laststatus=2
 " MAPS =----------------------------------------------------------------
 let mapleader = " "
 nnoremap <Leader>nt :NERDTreeFind <CR>
-nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
