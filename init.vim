@@ -119,6 +119,10 @@ call plug#begin('~/.vim/plugged')
 
   " git plugins
   Plug 'tpope/vim-fugitive'
+  
+  " Fuzzy finder
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " }}}
@@ -145,5 +149,6 @@ set laststatus=2
 
 " MAPS =----------------------------------------------------------------
 let mapleader = " "
-nnoremap <Leader>nt :NERDTreeFind <CR>
+nnoremap <Leader>nt :NERDTreeToggle <CR>
 nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <leader>p :Files <CR>

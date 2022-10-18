@@ -121,6 +121,15 @@ call plug#begin('~/.vim/plugged')
 
   " git plugins
   Plug 'tpope/vim-fugitive'
+
+  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
+
+  let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
+ 
+  Plug 'yuezk/vim-js'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'maxmellon/vim-jsx-pretty'
+
 call plug#end()
 
 " }}}
@@ -147,7 +156,7 @@ set laststatus=2
 
 " MAPS =----------------------------------------------------------------
 let mapleader = " "
-nnoremap <Leader>nt :NERDTreeFind <CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
 
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
