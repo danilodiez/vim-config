@@ -8,6 +8,8 @@
 "                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 "               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
+" Color scheme
+colorscheme darcula
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -124,6 +126,10 @@ call plug#begin('~/.vim/plugged')
   " Fuzzy finder
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+
+  " Theme
+  Plug 'doums/darcula'
+
 call plug#end()
 
 " }}}
