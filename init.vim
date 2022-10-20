@@ -116,6 +116,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   
   Plug 'damage220/vim-finder'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " git plugins
   Plug 'tpope/vim-fugitive'
@@ -152,3 +153,12 @@ let mapleader = " "
 nnoremap <Leader>nt :NERDTreeToggle <CR>
 nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>p :Files <CR>
+
+" FZF key bindings
+nnoremap <C-f> :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+nnoremap <silent> <Leader>f :Rg<CR>
