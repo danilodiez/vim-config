@@ -8,6 +8,7 @@
 "                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 "               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
+colorscheme darcula
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -116,24 +117,23 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   
   Plug 'damage220/vim-finder'
-  
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " git plugins
   Plug 'tpope/vim-fugitive'
+  
+  " Fuzzy finder
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " this is for auto complete, prettier and tslinting
-
-  let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
- 
-  Plug 'yuezk/vim-js'
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'maxmellon/vim-jsx-pretty'
+  " Theme
+  Plug 'doums/darcula'
 
 call plug#end()
 
 " }}}
 
+colorscheme darcula
 
 " STATUS LINE ------------------------------------------------------------ {{{
 
@@ -156,15 +156,27 @@ set laststatus=2
 
 " MAPS =----------------------------------------------------------------
 let mapleader = " "
-nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>nt :NERDTreeFind <CR>
+nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <leader>p :Files <CR>
+
+" FZF key bindings
+nnoremap <C-f> :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+nnoremap <silent> <Leader>f :Rg<CR>
 
 " use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+ function! s:check_back_space() abort
+   let col = col('.') - 1
+   return !col || getline('.')[col - 1]  =~ '\s'
+ endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+ inoremap <silent><expr> <Tab>
+       \ pumvisible() ? "\<C-n>" :
+       \ <SID>check_back_space() ? "\<Tab>" :
+       \ coc#refresh()
+
