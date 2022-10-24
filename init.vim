@@ -126,6 +126,9 @@ call plug#begin('~/.vim/plugged')
 
   " Theme
   Plug 'doums/darcula'
+  
+  " Add git branch name to the status line
+  Plug 'itchyny/vim-gitbranch'
 
 call plug#end()
 
@@ -153,7 +156,15 @@ set statusline+=%=
 
 " Show the status on the second to last line.
 set laststatus=2
-
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
 " }}}
 
 " MAPS =----------------------------------------------------------------
