@@ -133,12 +133,18 @@ call plug#begin('~/.vim/plugged')
   " Add icons for files in the tree
   Plug 'ryanoasis/vim-devicons'
 
+  " Block comments plugin --> use it with gcc
+  Plug 'tpope/vim-commentary'
+
+  " Add inline color visualization
+  Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 " Color scheme
 colorscheme darcula
 set termguicolors     " enable true colors support
 
+lua require'colorizer'.setup()
 
 " }}}
 
@@ -172,7 +178,7 @@ let g:lightline = {
 
 " MAPS =----------------------------------------------------------------
 let mapleader = " "
-nnoremap <Leader>nt :NERDTreeFind <CR>
+nnoremap <Leader>nt :NERDTreeToggle <CR>
 nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>p :Files <CR>
 
