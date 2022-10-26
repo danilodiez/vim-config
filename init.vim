@@ -10,7 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
-
+set guifont=Hack\ Nerd\ Font\ Mono:h11
 " Enable type file detection. Vim will be able to try to detect the type of file is use.
 filetype on
 
@@ -129,6 +129,9 @@ call plug#begin('~/.vim/plugged')
   
   " Add git branch name to the status line
   Plug 'itchyny/vim-gitbranch'
+  
+  " Add icons for files in the tree
+  Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
