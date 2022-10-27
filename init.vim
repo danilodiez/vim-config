@@ -178,7 +178,8 @@ let g:lightline = {
 
 " MAPS =----------------------------------------------------------------
 let mapleader = " "
-nnoremap <Leader>nt :NERDTreeToggle <CR>
+nnoremap <Leader>nt :NERDTreeFind <CR>
+nnoremap <Leader>nx :NERDTreeToggle <CR>
 nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>p :Files <CR>
 
