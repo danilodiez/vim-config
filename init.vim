@@ -125,8 +125,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf.vim'
 
   " Theme
-  Plug 'doums/darcula'
-  
+  Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
   " Add git branch name to the status line
   Plug 'itchyny/vim-gitbranch'
   
@@ -148,7 +147,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " Color scheme
-colorscheme darcula
+colorscheme catppuccin-macchiato
 set termguicolors     " enable true colors support
 
 lua require'colorizer'.setup()
