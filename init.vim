@@ -142,6 +142,9 @@ call plug#begin('~/.vim/plugged')
   " Add buffer tabs
   Plug 'mengelbrecht/lightline-bufferline'
 
+  " Add Git conlicts visualizer
+  Plug 'akinsho/git-conflict.nvim'
+
 call plug#end()
 
 " Color scheme
@@ -195,9 +198,10 @@ let g:lightline = {
       \ },
       \ 'component_type': {
       \   'buffers': 'tabsel'
-      \ }
+      \ },
       \ }
 set showtabline=2
+let g:lightline#bufferline#show_number=2
 " ------------------------------ }
 
 
