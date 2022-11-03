@@ -144,6 +144,8 @@ call plug#begin('~/.vim/plugged')
   " Add Git conlicts visualizer
   Plug 'akinsho/git-conflict.nvim'
 
+  " Add context visualization
+  Plug 'wellle/context.vim'
 call plug#end()
 
 " Color scheme
