@@ -146,6 +146,10 @@ call plug#begin('~/.vim/plugged')
 
   " Add context visualization
   Plug 'wellle/context.vim'
+  
+  " Add better comments plugin
+  Plug 'jbgutierrez/vim-better-comments'
+
 call plug#end()
 
 " Color scheme
