@@ -185,15 +185,7 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name'
       \ },
-      \ }
-" }}}
-
-"BUFFER LINE ---------------------------------------------------{
-let g:lightline = {
       \ 'colorscheme': 'one',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
-      \ },
       \ 'tabline': {
       \   'left': [ ['buffers'] ],
       \   'right': [ ['close'] ]
@@ -205,6 +197,9 @@ let g:lightline = {
       \   'buffers': 'tabsel'
       \ },
       \ }
+" }}}
+
+"BUFFER LINE ---------------------------------------------------{
 set showtabline=2
 let g:lightline#bufferline#show_number=2
 " ------------------------------ }
