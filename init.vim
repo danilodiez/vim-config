@@ -204,7 +204,13 @@ set showtabline=2
 let g:lightline#bufferline#show_number=2
 " ------------------------------ }
 
+" CONTEXT.VIM CONFIG -----------------------{
 
+let g:context_border_char='━'
+let g:context_highlight_normal='PMenu'
+let g:context_highlight_tag='Special'
+
+" }
 
 " MAPS =----------------------------------------------------------------
 
