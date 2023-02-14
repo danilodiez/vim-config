@@ -208,7 +208,7 @@ let g:lightline#bufferline#show_number=2
 
 let g:context_border_char='━'
 let g:context_highlight_normal='PMenu'
-let g:context_highlight_tag='Special'
+let g:context_highlight_tag='<hide>'
 
 " }
 
