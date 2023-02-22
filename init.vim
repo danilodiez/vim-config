@@ -149,6 +149,9 @@ call plug#begin('~/.vim/plugged')
   
   " Add better comments plugin
   Plug 'jbgutierrez/vim-better-comments'
+  
+  " Readme preview
+  Plug 'shime/vim-livedown' 
 
 call plug#end()
 
@@ -272,3 +275,7 @@ nmap <Leader>c6 <Plug>lightline#bufferline#delete(6)
 nmap <Leader>c7 <Plug>lightline#bufferline#delete(7)
 nmap <Leader>c8 <Plug>lightline#bufferline#delete(8)
 nmap <Leader>c9 <Plug>lightline#bufferline#delete(9)
+
+
+" See Readme Previews
+nmap gm :LivedownToggle<CR>
