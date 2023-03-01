@@ -124,8 +124,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  " Theme
+  " Themes
   Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+  Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
   " Add git branch name to the status line
   Plug 'itchyny/vim-gitbranch'
   
@@ -157,6 +158,8 @@ call plug#end()
 
 " Color scheme
 colorscheme catppuccin-macchiato
+" colorscheme embark
+
 set termguicolors     " enable true colors support
 
 lua require'colorizer'.setup()
@@ -200,6 +203,8 @@ let g:lightline = {
       \   'buffers': 'tabsel'
       \ },
       \ }
+let g:lightline#bufferline#smart_path=1
+let g:lightline#bufferline#shorten_path=0
 " }}}
 
 "BUFFER LINE ---------------------------------------------------{
