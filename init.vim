@@ -154,7 +154,13 @@ call plug#begin('~/.vim/plugged')
   " Readme preview
   Plug 'shime/vim-livedown' 
 
-call plug#end()
+  " Code actions menu
+  Plug 'weilbith/nvim-code-action-menu' 
+
+  " Prettier
+  Plug 'neoclide/coc-prettier'
+
+  call plug#end()
 
 " Color scheme
 colorscheme catppuccin-macchiato
@@ -227,7 +233,8 @@ nnoremap <Leader>nt :NERDTreeFind <CR>
 nnoremap <Leader>nx :NERDTreeToggle <CR>
 nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>p :FZF <CR>
-
+nnoremap <leader>gr :<C-U>call CocActionAsync('jumpReferences')<CR>
+nnoremap <leader>rp :<C-U>:CocCommand prettier.formatFile<CR>
 " FZF key bindings
 nnoremap <C-f> :FZF<CR>
 let g:fzf_action = {
