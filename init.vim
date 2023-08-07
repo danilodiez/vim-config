@@ -78,7 +78,6 @@ set hlsearch
 
 " Set the commands to save in history default number is 20.
 set history=1000
-
 " Enable auto completion menu after pressing TAB.
 set wildmenu
 
@@ -88,6 +87,7 @@ set wildmode=list:longest
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
 
 " PLUGINS ---------------------------------------------------------------- {{{
 
@@ -159,6 +159,9 @@ call plug#begin('~/.vim/plugged')
 
   " Prettier
   Plug 'neoclide/coc-prettier'
+
+  " Python LSP
+  Plug 'vim-python/python-syntax' 
 
   call plug#end()
 
@@ -291,3 +294,12 @@ nmap <Leader>c9 <Plug>lightline#bufferline#delete(9)
 
 " See Readme Previews
 nmap gm :LivedownToggle<CR>
+
+" Copy outside vim
+nnoremap <C-y> "+y
+vnoremap <C-y> "+y
+nnoremap <C-p> "+gP
+vnoremap <C-p> "+gP
+
+" Python LSP and highlight
+let g:python_highlight_all = 1
