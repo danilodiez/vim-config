@@ -97,9 +97,12 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'preservim/nerdtree'
 
-  Plug 'jelera/vim-javascript-syntax'
 
   Plug 'pangloss/vim-javascript'
+  Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   Plug 'nvim-telescope/telescope.nvim'
 
@@ -111,6 +114,8 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'itchyny/lightline.vim'
   Plug 'maximbaz/lightline-ale'
+
+  Plug 'prettier/prettier'
   
   Plug 'jiangmiao/auto-pairs'
   
@@ -163,9 +168,14 @@ call plug#begin('~/.vim/plugged')
   " Python LSP
   Plug 'vim-python/python-syntax' 
 
-  call plug#end()
+  " LSP Manager
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'kabouzeid/nvim-lspinstall'
+
+call plug#end()
 
 " Color scheme
+set termguicolors
 colorscheme catppuccin-macchiato
 " colorscheme embark
 
@@ -216,6 +226,13 @@ let g:lightline#bufferline#smart_path=1
 let g:lightline#bufferline#shorten_path=0
 " }}}
 
+" LSP CONFIG ON INIT ---------- {
+
+lua require'lspconfig'.pyright.setup{}
+lua require'lspconfig'.tailwindcss.setup{}
+lua require'lspconfig'.perlpls.setup{}
+
+" }
 "BUFFER LINE ---------------------------------------------------{
 set showtabline=2
 let g:lightline#bufferline#show_number=2
@@ -303,3 +320,25 @@ vnoremap <C-p> "+gP
 
 " Python LSP and highlight
 let g:python_highlight_all = 1
+
+
+let g:ale_linters = {
+    \   'javascript': ['eslint'],
+    \   'javascriptreact': ['eslint'],
+    \   'python': ['flake8'],
+    \}
+
+let g:ale_sign_error = '>>'
+let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
+
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
