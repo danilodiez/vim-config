@@ -185,7 +185,6 @@ lua require'colorizer'.setup()
 
 " }}}
 
-
 " STATUS LINE ------------------------------------------------------------ {{{
 
 " Clear status line when vimrc is reloaded.
@@ -231,6 +230,7 @@ let g:lightline#bufferline#shorten_path=0
 lua require'lspconfig'.pyright.setup{}
 lua require'lspconfig'.tailwindcss.setup{}
 lua require'lspconfig'.perlpls.setup{}
+lua require'lspconfig'.astro.setup{}
 
 " }
 "BUFFER LINE ---------------------------------------------------{
