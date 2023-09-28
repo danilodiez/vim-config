@@ -172,6 +172,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'neovim/nvim-lspconfig'
   Plug 'kabouzeid/nvim-lspinstall'
 
+  Plug 'wuelnerdotexe/vim-astro'
+
 call plug#end()
 
 " Color scheme
@@ -227,10 +229,12 @@ let g:lightline#bufferline#shorten_path=0
 
 " LSP CONFIG ON INIT ---------- {
 
-lua require'lspconfig'.pyright.setup{}
-lua require'lspconfig'.tailwindcss.setup{}
-lua require'lspconfig'.perlpls.setup{}
-lua require'lspconfig'.astro.setup{}
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.tailwindcss.setup{}
+require'lspconfig'.perlpls.setup{}
+require'lspconfig'.astro.setup{}
+EOF
 
 " }
 "BUFFER LINE ---------------------------------------------------{
