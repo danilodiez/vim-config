@@ -174,6 +174,9 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'wuelnerdotexe/vim-astro'
 
+  " Package Manager
+  Plug 'vuki656/package-info.nvim'
+
 call plug#end()
 
 " Color scheme
@@ -346,3 +349,15 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
+
+" Package.json info mapping
+lua << EOF
+require('package-info').setup()
+vim.api.nvim_set_keymap(
+    "n",
+    "<leader>ns",
+    "<cmd>lua require('package-info').show()<cr>",
+    { silent = true, noremap = true }
+)
+
+EOF
