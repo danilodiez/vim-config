@@ -177,6 +177,8 @@ call plug#begin('~/.vim/plugged')
   " Package Manager
   Plug 'vuki656/package-info.nvim'
 
+  Plug 'prisma/vim-prisma'
+
 call plug#end()
 
 " Color scheme
@@ -361,3 +363,5 @@ vim.api.nvim_set_keymap(
 )
 
 EOF
+
+let g:bettercomments_language_aliases = { 'javascript': 'js' }
