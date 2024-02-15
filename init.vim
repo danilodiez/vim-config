@@ -263,6 +263,7 @@ nnoremap <Leader>nx :NERDTreeToggle <CR>
 nnoremap <leader>fs :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>p :FZF <CR>
 nnoremap <leader>gr :<C-U>call CocActionAsync('jumpReferences')<CR>
+" show function defs
 nnoremap <leader>rp :<C-U>:CocCommand prettier.formatFile<CR>
 " FZF key bindings
 nnoremap <C-f> :FZF<CR>
@@ -365,3 +366,19 @@ vim.api.nvim_set_keymap(
 EOF
 
 let g:bettercomments_language_aliases = { 'javascript': 'js' }
+
+" Ignore errors
+function Null(error, response) abort
+endfunction
+
+" See function definitions on hover
+augroup hover
+	autocmd!
+	autocmd CursorHold * if !coc#float#has_float()
+		\| call CocActionAsync('doHover', 'float', function('Null'))
+		\| call CocActionAsync('highlight', function('Null'))
+	\| endif
+	autocmd CursorHoldI * if CocAction('ensureDocument')
+		\|silent call CocActionAsync('showSignatureHelp')
+	\| endif
+augroup end
