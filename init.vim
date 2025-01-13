@@ -171,6 +171,8 @@ call plug#begin('~/.vim/plugged')
   " LSP Manager
   Plug 'neovim/nvim-lspconfig'
   Plug 'kabouzeid/nvim-lspinstall'
+  Plug 'williamboman/mason.nvim'
+
 
   Plug 'wuelnerdotexe/vim-astro'
 
@@ -179,6 +181,9 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'prisma/vim-prisma'
 
+  " Emmet Html
+  Plug 'mattn/emmet-vim'
+  
 call plug#end()
 
 " Color scheme
@@ -239,6 +244,15 @@ require'lspconfig'.pyright.setup{}
 require'lspconfig'.tailwindcss.setup{}
 require'lspconfig'.perlpls.setup{}
 require'lspconfig'.astro.setup{}
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 EOF
 
 " }
