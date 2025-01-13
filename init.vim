@@ -105,6 +105,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter' 
 
   Plug 'nvim-lua/plenary.nvim'
 
@@ -172,6 +173,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'neovim/nvim-lspconfig'
   Plug 'kabouzeid/nvim-lspinstall'
   Plug 'williamboman/mason.nvim'
+  Plug 'williamboman/mason-lspconfig.nvim'
 
 
   Plug 'wuelnerdotexe/vim-astro'
@@ -240,10 +242,8 @@ let g:lightline#bufferline#shorten_path=0
 " LSP CONFIG ON INIT ---------- {
 
 lua << EOF
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.tailwindcss.setup{}
-require'lspconfig'.perlpls.setup{}
-require'lspconfig'.astro.setup{}
+
+-- Mason setup
 require("mason").setup({
     ui = {
         icons = {
@@ -252,6 +252,41 @@ require("mason").setup({
             package_uninstalled = "✗"
         }
     }
+})
+
+-- Mason-LSPConfig setup
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "astro",
+        "tsserver",
+        "html",
+        "cssls",
+        "tailwindcss",
+        "pyright",
+        "perlpls"
+    },
+    automatic_installation = true, -- Automatically install configured servers
+})
+
+-- LSP configurations
+local lspconfig = require("lspconfig")
+lspconfig.pyright.setup{}
+lspconfig.tailwindcss.setup{}
+lspconfig.perlpls.setup{}
+lspconfig.astro.setup{
+    capabilities = capabilities, -- Ensure capabilities is defined
+    on_attach = on_attach,       -- Ensure on_attach is defined
+    filetypes = { "astro" },
+}
+
+-- Treesitter configuration
+require("nvim-treesitter.configs").setup({
+    ensure_installed = {
+        "astro",
+    },
+    highlight = {
+        enable = true,
+    },
 })
 EOF
 
@@ -382,7 +417,7 @@ EOF
 let g:bettercomments_language_aliases = { 'javascript': 'js' }
 
 " Ignore errors
-function Null(error, response) abort
+function! Null(error, response) abort
 endfunction
 
 " See function definitions on hover
