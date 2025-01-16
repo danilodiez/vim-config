@@ -263,7 +263,6 @@ require("mason-lspconfig").setup({
         "cssls",
         "tailwindcss",
         "pyright",
-        "perlpls"
     },
     automatic_installation = true, -- Automatically install configured servers
 })
