@@ -186,6 +186,10 @@ call plug#begin('~/.vim/plugged')
   " Emmet Html
   Plug 'mattn/emmet-vim'
   
+  " OpenCode AI assistant
+  Plug 'folke/snacks.nvim'
+  Plug 'NickvanDyke/opencode.nvim'
+  
 call plug#end()
 
 " Color scheme
@@ -196,6 +200,24 @@ colorscheme catppuccin-macchiato
 set termguicolors     " enable true colors support
 
 lua require'colorizer'.setup()
+
+" OpenCode configuration
+lua << EOF
+-- Setup snacks.nvim (dependency for opencode)
+require("snacks").setup({
+    input = {},
+    picker = {},
+    terminal = {}
+})
+
+-- Setup opencode
+vim.g.opencode_opts = {
+    -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
+}
+
+-- Required for `opts.events.reload`.
+vim.o.autoread = true
+EOF
 
 " }}}
 
@@ -375,6 +397,20 @@ nnoremap <C-y> "+y
 vnoremap <C-y> "+y
 nnoremap <C-p> "+gP
 vnoremap <C-p> "+gP
+
+" OpenCode keymaps
+lua << EOF
+-- Recommended/example keymaps.
+vim.keymap.set({ "n", "x" }, "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode" })
+vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end,                          { desc = "Execute opencode action…" })
+vim.keymap.set({ "n", "x" },    "ga", function() require("opencode").prompt("@this") end,                   { desc = "Add to opencode" })
+vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end,                          { desc = "Toggle opencode" })
+vim.keymap.set("n",        "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "opencode half page up" })
+vim.keymap.set("n",        "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "opencode half page down" })
+-- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
+vim.keymap.set('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
+vim.keymap.set('n', '-', '<C-x>', { desc = 'Decrement', noremap = true })
+EOF
 
 " Python LSP and highlight
 let g:python_highlight_all = 1
