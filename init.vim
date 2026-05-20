@@ -125,6 +125,7 @@ call plug#begin('~/.vim/plugged')
 
   " git plugins
   Plug 'tpope/vim-fugitive'
+  Plug 'esmuellert/codediff.nvim'
   
   " Fuzzy finder
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -343,6 +344,8 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <Leader>cd :CodeDiff<CR>
+nnoremap <Leader>wr :set wrap!<CR>
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
@@ -428,6 +431,10 @@ let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
 let g:coc_global_extensions = [
   \ 'coc-tsserver'
   \ ]
+
+" Prevent coc from processing buffers with paths starting with // (e.g. codediff scratch buffers)
+autocmd BufNew,BufEnter * if expand('<afile>') =~# '^//' | let b:coc_enabled = 0 | endif
+let g:coc_disable_uncaught_error = 1
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
